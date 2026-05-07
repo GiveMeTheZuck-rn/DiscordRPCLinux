@@ -26,7 +26,10 @@ def get_active_app():
         raw = wm_class.split("=")[1].strip()
 
         # ─────────────────────────────
-        # MATCH YOUR DISCORD ASSETS
+        # If you would like to add images to ur rich prescence, 
+        # Upload image files and use the provided list below or copy and paste 
+        # and change the name to match ur application, the last word in each must be 
+        # put to exactly what the name is in discord rich presence
         # ─────────────────────────────
 
         if "firefox" in raw:
@@ -38,9 +41,9 @@ def get_active_app():
         if "tor" in raw:
             return "Tor Browser", "torlogo"
 
-        # terminals (optional fallback)
+        # terminals
         if any(x in raw for x in ["alacritty", "kitty", "xterm", "foot"]):
-            return "Arch Terminal", "output"
+            return "Linux terminal", "output"
 
         if "code" in raw:
             return "VS Code", "vscode"

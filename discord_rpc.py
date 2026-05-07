@@ -4,7 +4,7 @@ from pypresence import Presence
 import subprocess
 import time
 
-CLIENT_ID = "1501721239809560616"
+CLIENT_ID = "YOUR_CLIENT_ID_HERE"
 
 rpc = Presence(CLIENT_ID)
 rpc.connect()

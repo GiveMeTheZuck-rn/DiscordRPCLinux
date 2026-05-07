@@ -30,6 +30,7 @@ def get_active_app():
         # Upload image files and use the provided list below or copy and paste 
         # and change the name to match ur application, the last word in each must be 
         # put to exactly what the name is in discord rich presence
+        # dont forget to uncomment (#) them out
         # ─────────────────────────────
 
         #if "firefox" in raw:

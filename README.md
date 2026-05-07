@@ -14,3 +14,5 @@ Make a new application
 Copy the application ID 
 
 Paste the application id into the placeholder at the top of the text 
+
+if you would like to add images to rich prescence, follow the guide at the bottom of the code.

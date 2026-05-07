@@ -6,7 +6,7 @@ intall xdotool & wmctrl
 https://github.com/jordansissel/xdotool
 https://github.com/dancor/wmctrl
 
-(may be avalible by your package manager) 
+(may be available by your package manager) 
 
 Head over to https://discord.com/developers/applications
 

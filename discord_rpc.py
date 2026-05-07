@@ -44,7 +44,7 @@ def get_active_app():
 
         # terminals
         if any(x in raw for x in ["alacritty", "kitty", "xterm", "foot"]):
-            return "Linux terminal", "output"
+            return "Linux terminal"
 
         if "code" in raw:
             return "VS Code", "vscode"

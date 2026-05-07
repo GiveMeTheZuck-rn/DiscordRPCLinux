@@ -32,14 +32,14 @@ def get_active_app():
         # put to exactly what the name is in discord rich presence
         # ─────────────────────────────
 
-        if "firefox" in raw:
-            return "Firefox", "firefox"
+        #if "firefox" in raw:
+            #return "Firefox", "firefox"
 
-        if "discord" in raw:
-            return "Discord", "discordlogo"
+        #if "discord" in raw:
+            #return "Discord", "discordlogo"
 
-        if "tor" in raw:
-            return "Tor Browser", "torlogo"
+        #if "tor" in raw:
+            #return "Tor Browser", "torlogo"
 
         # terminals
         if any(x in raw for x in ["alacritty", "kitty", "xterm", "foot"]):

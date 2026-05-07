@@ -1,5 +1,4 @@
 
-
 from pypresence import Presence
 import subprocess
 import time
@@ -21,7 +20,7 @@ def get_active_app():
         ).decode().lower()
 
         if "=" not in wm_class:
-            return "Unknown", "output"
+            return "Unknown", None
 
         raw = wm_class.split("=")[1].strip()
 
@@ -44,15 +43,15 @@ def get_active_app():
 
         # terminals
         if any(x in raw for x in ["alacritty", "kitty", "xterm", "foot"]):
-            return "Linux terminal"
+            return "Linux terminal", None
 
         if "code" in raw:
             return "VS Code", "vscode"
 
-        return raw.title(), "output"
+        return raw.title(), None
 
     except:
-        return "Unknown", "output"
+        return "Unknown", None
 
 
 while True:

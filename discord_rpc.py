@@ -35,7 +35,7 @@ def get_active_app():
 
         # optional application image mappings
         # uncomment any you want to enable
-        # if u want any, make sure u make a rich presense corresponding to the 
+        # if u want any, make sure u make a rich presense image corresponding to the 
         # exact names on the right side 
 
         # if "firefox" in app:

@@ -1,12 +1,15 @@
-
 from pypresence import Presence
 import subprocess
 import time
 
 CLIENT_ID = "YOUR_CLIENT_ID_HERE"
 
-rpc = Presence(CLIENT_ID)
-rpc.connect()
+try:
+    rpc = Presence(CLIENT_ID)
+    rpc.connect()
+except Exception as e:
+    print(f"Failed to connect to Discord: {e}")
+    exit(1)
 
 
 def get_active_app():
@@ -22,44 +25,61 @@ def get_active_app():
         if "=" not in wm_class:
             return "Unknown", None
 
-        raw = wm_class.split("=")[1].strip()
+        raw = wm_class.split("=")[1]
+        classes = [x.strip().strip('"') for x in raw.split(",")]
 
-        # ─────────────────────────────
-        # If you would like to add images to ur rich prescence, 
-        # Upload image files and use the provided list below or copy and paste 
-        # and change the name to match ur application, the last word in each must be 
-        # put to exactly what the name is in discord rich presence
-        # dont forget to uncomment (#) them out
-        # ─────────────────────────────
+        if not classes:
+            return "Unknown", None
 
-        #if "firefox" in raw:
-            #return "Firefox", "firefox"
+        app = classes[-1].lower()
 
-        #if "discord" in raw:
-            #return "Discord", "discordlogo"
+        # optional application image mappings
+        # uncomment any you want to enable
+        # if u want any, make sure u make a rich presense corresponding to the 
+        # exact names on the right side 
 
-        #if "tor" in raw:
-            #return "Tor Browser", "torlogo"
+        # if "firefox" in app:
+        #     return "Firefox", "firefox" 
 
-        # terminals
-        if any(x in raw for x in ["alacritty", "kitty", "xterm", "foot"]):
-            return "Linux terminal", None
+        # if "discord" in app:
+        #     return "Discord", "discordlogo"
 
-        if "code" in raw:
-            return "VS Code", "vscode"
+        # if "tor" in app:
+        #     return "Tor Browser", "torlogo"
 
-        return raw.title(), None
+        # if "code" in app:
+        #     return "VS Code", "vscode"
 
-    except:
+        if any(x in app for x in ["alacritty", "kitty", "xterm", "foot"]):
+            return "Linux Terminal", None
+
+        return app.title(), None
+
+    except Exception as e:
+        print(f"Error detecting active application: {e}")
         return "Unknown", None
 
+
+last_app = None
 
 while True:
     app_name, asset = get_active_app()
 
-    rpc.update(
-        details=app_name,
-        large_image=asset
-    )
+    if app_name != last_app:
+        try:
+            if asset:
+                rpc.update(
+                    details=app_name,
+                    large_image=asset
+                )
+            else:
+                rpc.update(
+                    details=app_name
+                )
+
+            last_app = app_name
+
+        except Exception as e:
+            print(f"Failed to update Rich Presence: {e}")
 
     time.sleep(5)
